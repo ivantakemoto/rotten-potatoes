@@ -1,4 +1,4 @@
-name: CI CD
+name: CI-CD
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
           tags: |
             ivantakemoto/rotten-potatoes:latest
             ivantakemoto/rotten-potatoes:v${{ github.run_number }}
-  #CD:
+  CD:
     needs: [CI]
     runs-on: ubuntu-latest
     
