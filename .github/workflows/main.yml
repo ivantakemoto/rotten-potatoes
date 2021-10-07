@@ -1,4 +1,4 @@
-name: CI CD
+name: CI-CD
 
 on:
   push:
@@ -29,22 +29,22 @@ jobs:
             ivantakemoto/rotten-potatoes:latest
             ivantakemoto/rotten-potatoes:v${{ github.run_number }}
   #CD:
-  #  needs: [CI]
-  #  runs-on: ubuntu-latest
-  #  
-  #  steps:
-  #    - uses: actions/checkout@v2
-  #    
-  #    - name: Kubernetes set context
-  #      uses: Azure/k8s-set-context@v1.1
-  #      with:
-  #        method: kubeconfig
-  #        kubeconfig: ${{ secrets.K8S_CONFIG }}
-  #        
-  #    - name: Deploy to Kubernetes cluster
-  #      uses: Azure/k8s-deploy@v1.3
-  #      with:
-  #        images: ivantakemoto/rotten-potatoes:v${{ github.run_number }}
-  #        manifests: |
-  #          k8s/deployment.yaml
-  #
+    needs: [CI]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v1.1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.K8S_CONFIG }}
+          
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v1.3
+        with:
+          images: ivantakemoto/rotten-potatoes:v${{ github.run_number }}
+          manifests: |
+            k8s/deployment.yaml
+
