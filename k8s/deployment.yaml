@@ -51,9 +51,16 @@ spec:
     spec:
       containers:
         - name: web
-          image: ivantakemoto/rotten-potatoes:latest
+          image: ivantakemoto/rotten-potatoes:v7
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
           ports:
-            - containerPort: 5000
+            - containerPort: 80
           env:
             - name: MONGODB_DB
               value: "admin"
@@ -76,6 +83,6 @@ spec:
     app: web
   ports:
     - port: 80
-      targetPort: 5000
+      targetPort: 80
       nodePort: 30000
   type: NodePort
