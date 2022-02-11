@@ -67,3 +67,15 @@ spec:
               value: "mongopwd"
 ---
 
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: 5000
+      nodePort: 30000
+  type: NodePort
